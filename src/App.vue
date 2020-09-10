@@ -1,39 +1,25 @@
 <template>
-  <div id="app">
-    <md-field>
-      <md-input v-model="currentTodo" @keydown.enter="addTodo()" placeholder="Add a todo"></md-input>
-    </md-field>
-    <ul class="todos">
-      <li v-for="todo in todos" :key="todo.id">
-        {{todo.label}}
-      </li>
-      <button v-for="todo in todos" :key="todo.id" @click="removeTodo(todo)">Delete</button>
-    </ul>
-  </div>
+  <todo-list list-name="To-Dos"/>
 </template>
 
 <script>
-export default {
-  data() {
-    return {
-      todos: [],
-      currentTodo: '',
-      editedToDoId: ''
-    };
-  },
-  methods: {
-    addTodo() {
-      this.todos.push({id: this.todos.length, label: this.currentTodo, completed: false});
-      this.currentTodo = '';
-    },
-    removeTodo(todo) {
-      var index = this.todos.indexOf(todo);
-      this.todos.splice(index, 1);
-    },
+import TodoList from "./components/TodoList.vue";
 
-  }
+
+export default {
+  name: "App",
+  components: {
+    TodoList,
+  },
 };
 </script>
-
-<style>
+<style lang="scss">
+#app {
+  font-family: Avenir, Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 65px;
+}
 </style>
